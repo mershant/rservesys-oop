@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Reservation Home</title>
+  <style>
+    /* Just a bit of styling to organize sections */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .portal-section {
+      border: 1px solid #ccc;
+      margin: 20px 0;
+      padding: 15px;
+      background-color: #f9f9f9;
+    }
+    .portal-section h2 {
+      margin-top: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>Reservation System</h1>
+
+  <!-- Navigation Links -->
+  <div class="portal-section">
+    <h2>Quick Navigation</h2>
+    <p><strong>For Users:</strong></p>
+    <ul>
+      <li><a href="#make-reservation">Make a Reservation</a></li>
+      <li><a href="#list-reservations">List Reservations</a></li>
+      <li><a href="#cancel-reservation">Cancel Reservation</a></li>
+    </ul>
+
+    <p><strong>For Admins/Developers:</strong></p>
+    <ul>
+      <li><a href="#set-capacity">Set Capacity</a></li>
+    </ul>
+  </div>
+
+  <!-- USER SECTIONS -->
+  <div class="portal-section" id="make-reservation">
+    <h2>User: Make a Reservation</h2>
+    <form action="{{ url_for('make_reservation') }}" method="POST">
+      <label for="customerName">Your Name:</label><br>
+      <input type="text" name="customerName" required><br><br>
+
+      <label for="resourceId">Resource ID:</label><br>
+      <input type="text" name="resourceId" required><br><br>
+
+      <label for="reservationDate">Reservation Date (YYYY-MM-DD):</label><br>
+      <input type="text" name="reservationDate" required><br><br>
+
+      <button type="submit">Reserve</button>
+    </form>
+  </div>
+
+  <div class="portal-section" id="list-reservations">
+    <h2>User: List Reservations</h2>
+    <form action="{{ url_for('list_reservations') }}" method="POST">
+      <label for="listDate">Enter Date (YYYY-MM-DD):</label><br>
+      <input type="text" name="listDate" required><br><br>
+      <button type="submit">Show Reservations</button>
+    </form>
+  </div>
+
+  <div class="portal-section" id="cancel-reservation">
+    <h2>User: Cancel a Reservation</h2>
+    <form action="{{ url_for('cancel_reservation') }}" method="POST">
+      <label for="cancelName">Your Name:</label><br>
+      <input type="text" name="cancelName" required><br><br>
+
+      <label for="cancelResource">Resource ID:</label><br>
+      <input type="text" name="cancelResource" required><br><br>
+
+      <label for="cancelDate">Reservation Date (YYYY-MM-DD):</label><br>
+      <input type="text" name="cancelDate" required><br><br>
+
+      <button type="submit">Cancel</button>
+    </form>
+  </div>
+
+  <!-- DEVELOPER SECTION -->
+  <div class="portal-section" id="set-capacity">
+    <h2>Admin/Developer: Set or Update Capacity</h2>
+    <form action="{{ url_for('set_capacity') }}" method="POST">
+      <label for="capacityDate">Date (YYYY-MM-DD):</label><br>
+      <input type="text" name="capacityDate" required><br><br>
+
+      <label for="capacityValue">Capacity Value:</label><br>
+      <input type="number" name="capacityValue" required><br><br>
+
+      <button type="submit">Set Capacity</button>
+    </form>
+  </div>
+</body>
+</html>

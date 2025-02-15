@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Reservations List</title>
+</head>
+<body>
+  <h1>Reservations for {{ date_str if date_str else "(No Date Specified)" }}</h1>
+
+  {% if reservations and date_str %}
+    <ul>
+      {% for r in reservations %}
+      <li>{{ r.customer_name }} -> {{ r.resource_id }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No reservations found for the specified date.</p>
+  {% endif %}
+
+  <br><a href="{{ url_for('index') }}">Back to Home</a>
+</body>
+</html>

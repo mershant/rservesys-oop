@@ -5,18 +5,21 @@
   <title>Reservations List</title>
 </head>
 <body>
-  <h1>Reservations for {{ date_str if date_str else "(No Date Specified)" }}</h1>
+  <h1>Reservations for {{ date_str }}</h1>
+  <p>Capacity: {{ reservations|length }} / {{ capacity }}</p>
 
-  {% if reservations and date_str %}
+  {% if reservations %}
     <ul>
       {% for r in reservations %}
-      <li>{{ r.customer_name }} -> {{ r.resource_id }}</li>
+      <li>{{ r.customer_name }} → {{ r.resource_id }}</li>
       {% endfor %}
     </ul>
   {% else %}
-    <p>No reservations found for the specified date.</p>
+    <p>No reservations found for that date.</p>
   {% endif %}
 
-  <br><a href="{{ url_for('index') }}">Back to Home</a>
+  <br>
+  <a href="{{ url_for('list_reservations') }}">Back to Date Selection</a> |
+  <a href="{{ url_for('index') }}">Home</a>
 </body>
 </html>

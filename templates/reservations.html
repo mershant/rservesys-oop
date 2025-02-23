@@ -20,6 +20,8 @@
 
   <br>
   <a href="{{ url_for('list_reservations') }}">Back to Date Selection</a> |
-  <a href="{{ url_for('index') }}">Home</a>
+  <a href="{{ url_for('index') }}">Home</a> |
+  <a href="{{ url_for('export_excel', date_str=date_str) }}">Export to Excel</a>
+
 </body>
 </html>

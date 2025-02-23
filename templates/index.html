@@ -28,11 +28,26 @@
       <label>Your Name:</label><br>
       <input type="text" name="customerName" required><br><br>
 
-      <label>Resource ID:</label><br>
-      <input type="text" name="resourceId" required><br><br>
+      <label>Reservation Date:</label><br>
+      <input type="date" name="reservationDate" id="reservationDate" min="{{ today }}" required><br><br>
 
-      <label>Reservation Date (YYYY-MM-DD):</label><br>
-      <input type="text" name="reservationDate" required><br><br>
+      <label for="timeSlot">Pick a time slot:</label><br>
+      <select name="timeSlot" required>
+        <option value="7 AM - 11 AM">7 AM - 11 AM</option>
+        <option value="12 PM - 4 PM">12 PM - 4 PM</option>
+        <option value="5 PM - 9 PM">5 PM - 9 PM</option>
+      </select><br><br>      
+      
+      <label>Select Table:</label><br>
+      <select name="resourceId" required>
+        {% for t in system.get_free_tables_for_date(today) %}
+          <option>{{ t }}</option>
+        {% else %}
+          <option disabled>No available tables</option>
+        {% endfor %}
+      </select><br><br>
+      
+
 
       <button type="submit">Reserve</button>
     </form>
@@ -46,15 +61,28 @@
 
   <div class="portal-section">
     <h2>User: Cancel a Reservation</h2>
+    <!-- CANCEL FORM -->
     <form action="{{ url_for('cancel_reservation') }}" method="POST">
       <label>Your Name:</label><br>
       <input type="text" name="cancelName" required><br><br>
 
-      <label>Resource ID:</label><br>
-      <input type="text" name="cancelResource" required><br><br>
+      <label>Reservation Date:</label><br>
+      <input type="date" name="cancelDate" min="{{ today }}" required><br><br>
 
-      <label>Reservation Date (YYYY-MM-DD):</label><br>
-      <input type="text" name="cancelDate" required><br><br>
+      <label for="cancelTimeSlot">Time Slot:</label><br>
+      <select name="cancelTimeSlot" required>
+        <option value="7 AM - 11 AM">7 AM - 11 AM</option>
+        <option value="12 PM - 4 PM">12 PM - 4 PM</option>
+        <option value="5 PM - 9 PM">5 PM - 9 PM</option>
+      </select><br><br>
+      
+      
+      <label>Select Table:</label><br>
+      <select name="cancelResource" required>
+        {% for t in system.get_tables_for_date(today) %}
+          <option>{{ t }}</option>
+        {% endfor %}
+      </select><br><br>
 
       <button type="submit">Cancel</button>
     </form>
@@ -64,13 +92,13 @@
     <h2>Admin/Developer: Set Capacity</h2>
     <form action="{{ url_for('set_capacity') }}" method="POST">
       <label>Date (YYYY-MM-DD):</label><br>
-      <input type="text" name="capacityDate" required><br><br>
-
-      <label>Capacity Value:</label><br>
-      <input type="number" name="capacityValue" required><br><br>
-
-      <button type="submit">Set Capacity</button>
-    </form>
+      <input type="date" name="capacityDate" required><br><br>
+    
+      <label>New Capacity:</label><br>
+      <input type="number" name="capacityValue" min="1" required><br><br>
+    
+      <button type="submit">Update Capacity</button>
+    </form>    
   </div>
 </body>
 </html>

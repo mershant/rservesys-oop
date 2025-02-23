@@ -1,0 +1,22 @@
+{
+  "reservations_by_date": {
+    "2025-02-23:7 AM - 11 AM": [
+      {
+        "customer_name": "Mr. Man",
+        "resource_id": "Table1",
+        "reservation_date": "2025-02-23",
+        "time_slot": "7 AM - 11 AM"
+      }
+    ],
+    "2025-02-24:12 PM - 4 PM": [
+      {
+        "customer_name": "Test 2",
+        "resource_id": "Table1",
+        "reservation_date": "2025-02-24",
+        "time_slot": "12 PM - 4 PM"
+      }
+    ]
+  },
+  "capacity_by_date": {},
+  "tables_by_date": {}
+}

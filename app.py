@@ -38,16 +38,13 @@ def cancel_reservation():
     return render_template('success.html', message=message)
 
 
-@app.route('/set_capacity', methods=['GET', 'POST'])
+@app.route('/set_capacity', methods=['POST'])
 def set_capacity():
-    if request.method == 'POST':
-        date_str = request.form.get('capacityDate')
-        capacity_value = int(request.form.get('capacityValue'))
-        system.set_capacity_for_date(date_str, capacity_value)
-        return render_template('success.html',
-                               message=f"Capacity for {date_str} updated to {capacity_value} and tables set.")
-    else:
-        return render_template('capacity.html')
+    date_str = request.form.get('capacityDate')
+    capacity_value = int(request.form.get('capacityValue'))
+    system.set_capacity_for_date(date_str, capacity_value)  # Pass 2 arguments now
+    return "Capacity updated."
+
 
 @app.route('/export_excel/<date_str>')
 def export_excel(date_str):

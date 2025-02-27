@@ -1,0 +1,42 @@
+digraph Flowchart {
+	graph [rankdir=TB]
+	node [shape=box style=rounded]
+	A [label=Start]
+	B [label="User Opens Site"]
+	C [label="Select Date & Time"]
+	D [label="Available?" shape=diamond]
+	E [label="Show Tables"]
+	F [label="Suggest Slots"]
+	G [label="Select Table"]
+	H [label="Enter Name"]
+	I [label=Confirm]
+	J [label="Save Data"]
+	K [label=Confirmation]
+	L [label="Retry?" shape=diamond]
+	M [label=Exit]
+	N [label="Cancel?"]
+	O [label="Exists?" shape=diamond]
+	P [label=Remove]
+	Q [label=Error]
+	R [label="Generate Report"]
+	S [label="Download Excel"]
+	A -> B
+	B -> C
+	C -> D
+	D -> E [label=Yes]
+	D -> F [label=No]
+	E -> G
+	G -> H
+	H -> I
+	I -> J
+	J -> K
+	F -> L
+	L -> C [label=Yes]
+	L -> M [label=No]
+	K -> N
+	N -> O
+	O -> P [label=Yes]
+	O -> Q [label=No]
+	K -> R
+	R -> S
+}
